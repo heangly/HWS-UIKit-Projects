@@ -14,6 +14,8 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Storm Viewer"
+        navigationController?.navigationBar.prefersLargeTitles = true
         getAllImageNames()
         configureTableView()
     }
@@ -50,7 +52,11 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let vc = DetailViewController()
+        vc.selectedImage = images[indexPath.row]
+        vc.currentImageNumber = indexPath.row + 1
+        vc.totalImageNumber = images.count
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

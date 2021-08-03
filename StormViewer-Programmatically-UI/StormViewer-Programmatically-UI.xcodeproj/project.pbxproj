@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71379F8126B9BB93007C0FD7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71379F8026B9BB93007C0FD7 /* DetailViewController.swift */; };
 		71D4F1FE26B7337900B647A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4F1FD26B7337900B647A1 /* AppDelegate.swift */; };
 		71D4F20026B7337900B647A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4F1FF26B7337900B647A1 /* SceneDelegate.swift */; };
 		71D4F20226B7337900B647A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4F20126B7337900B647A1 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		71379F8026B9BB93007C0FD7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		71D4F1FA26B7337900B647A1 /* StormViewer-Programmatically-UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StormViewer-Programmatically-UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71D4F1FD26B7337900B647A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71D4F1FF26B7337900B647A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		71379F8426B9BB9E007C0FD7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				71D4F20126B7337900B647A1 /* ViewController.swift */,
+				71379F8026B9BB93007C0FD7 /* DetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		71D4F1F126B7337900B647A1 = {
 			isa = PBXGroup;
 			children = (
@@ -80,8 +91,8 @@
 			children = (
 				71D4F1FD26B7337900B647A1 /* AppDelegate.swift */,
 				71D4F1FF26B7337900B647A1 /* SceneDelegate.swift */,
-				71D4F20126B7337900B647A1 /* ViewController.swift */,
 				71D4F21226B7347000B647A1 /* ImageCell.swift */,
+				71379F8426B9BB9E007C0FD7 /* Controllers */,
 				71D4F20326B7337900B647A1 /* Main.storyboard */,
 				71D4F20626B7337B00B647A1 /* Assets.xcassets */,
 				71D4F20826B7337B00B647A1 /* LaunchScreen.storyboard */,
@@ -191,6 +202,7 @@
 				71D4F20226B7337900B647A1 /* ViewController.swift in Sources */,
 				71D4F21326B7347000B647A1 /* ImageCell.swift in Sources */,
 				71D4F1FE26B7337900B647A1 /* AppDelegate.swift in Sources */,
+				71379F8126B9BB93007C0FD7 /* DetailViewController.swift in Sources */,
 				71D4F20026B7337900B647A1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
