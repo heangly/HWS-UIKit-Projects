@@ -22,14 +22,23 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqD-ov-9Dh">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
                                         <state key="normal" image="us"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="E2u-s4-Fhd"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XY-SN-HPJ">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9XY-SN-HPJ">
                                         <rect key="frame" x="0.0" y="130" width="200" height="100"/>
                                         <state key="normal" image="us"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bRH-Ml-ehQ"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qv-qu-I04">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qv-qu-I04">
                                         <rect key="frame" x="0.0" y="260" width="200" height="100"/>
                                         <state key="normal" image="us"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yx3-ex-iCQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -43,9 +52,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="2Rp-dc-DqO"/>
                     <connections>
-                        <outlet property="button1" destination="CqD-ov-9Dh" id="T9F-lo-aa7"/>
-                        <outlet property="button2" destination="9XY-SN-HPJ" id="eCB-Z2-mJl"/>
-                        <outlet property="button3" destination="8qv-qu-I04" id="f1q-BF-deP"/>
+                        <outlet property="button1" destination="CqD-ov-9Dh" id="hG8-1n-UXG"/>
+                        <outlet property="button2" destination="9XY-SN-HPJ" id="gqn-jp-BaN"/>
+                        <outlet property="button3" destination="8qv-qu-I04" id="nzq-o1-Q6Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
