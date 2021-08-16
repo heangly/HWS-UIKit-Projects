@@ -17,6 +17,8 @@ class MainTabController: UITabBarController {
         view.backgroundColor = .systemBackground
         let recentNav = UINavigationController(rootViewController: ViewController())
         recentNav.tabBarItem = UITabBarItem(tabBarSystemItem: .recents, tag: 1)
-        setViewControllers([recentNav], animated: false)
+        let topRatedNav = UINavigationController(rootViewController: ViewController())
+        topRatedNav.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 2)
+        setViewControllers([recentNav, topRatedNav], animated: false)
     }
 }

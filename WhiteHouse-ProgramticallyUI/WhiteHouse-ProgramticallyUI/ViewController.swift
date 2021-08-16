@@ -16,13 +16,20 @@ class ViewController: UITableViewController {
     }
 
     func configureUI() {
-        tableView.register(MainCell.self, forCellReuseIdentifier: "Cell")
-
+        tableView?.register(MainCell.self, forCellReuseIdentifier: "Cell")
         fetchData()
     }
 
     func fetchData() {
-        if let url = URL(string: "https://www.hackingwithswift.com/samples/petitions-1.json") {
+        let urlString: String
+        
+        if navigationController?.tabBarItem.tag == 1 {
+            urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        } else {
+            urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
+        }
+
+        if let url = URL(string: urlString) {
             let urlSession = URLSession.shared.dataTask(with: url) { (data, reponse, error) in
                 if let error = error {
                     print("DEBUG: error fetching data \(error.localizedDescription)")
@@ -43,14 +50,13 @@ class ViewController: UITableViewController {
             let data = try decoder.decode(Petitions.self, from: jsonData)
             petitons = data.results
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.tableView?.reloadData()
             }
         } catch {
             print("Cannot convert data to json \(error.localizedDescription)")
         }
 
     }
-
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return petitons.count
@@ -62,6 +68,12 @@ class ViewController: UITableViewController {
         cell.textLabel?.text = petitons[indexPath.row].title
         cell.detailTextLabel?.text = petitons[indexPath.row].body
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailViewController()
+        vc.detailItem = petitons[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 
