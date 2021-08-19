@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		714E2CFC26CDAFD100F044CB /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 714E2CFB26CDAFD100F044CB /* level1.txt */; };
+		715BD90326CED82500BE2C7D /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 715BD90226CED82500BE2C7D /* level2.txt */; };
 		71E406D426CBF66C004A4E75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E406D326CBF66C004A4E75 /* AppDelegate.swift */; };
 		71E406D626CBF66C004A4E75 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E406D526CBF66C004A4E75 /* SceneDelegate.swift */; };
 		71E406D826CBF66C004A4E75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E406D726CBF66C004A4E75 /* ViewController.swift */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		714E2CFB26CDAFD100F044CB /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = level1.txt; path = "../../../../../HackingWithSwift-main/Classic/project8-files/level1.txt"; sourceTree = "<group>"; };
+		715BD90226CED82500BE2C7D /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = level2.txt; path = "../../../../../HackingWithSwift-main/Classic/project8-files/level2.txt"; sourceTree = "<group>"; };
 		71E406D026CBF66C004A4E75 /* SwiftyWord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyWord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E406D326CBF66C004A4E75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71E406D526CBF66C004A4E75 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 				71E406DC26CBF66E004A4E75 /* Assets.xcassets */,
 				71E406DE26CBF66E004A4E75 /* LaunchScreen.storyboard */,
 				71E406E126CBF66E004A4E75 /* Info.plist */,
+				714E2CFB26CDAFD100F044CB /* level1.txt */,
+				715BD90226CED82500BE2C7D /* level2.txt */,
 			);
 			path = SwiftyWord;
 			sourceTree = "<group>";
@@ -121,7 +127,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				714E2CFC26CDAFD100F044CB /* level1.txt in Resources */,
 				71E406E026CBF66E004A4E75 /* LaunchScreen.storyboard in Resources */,
+				715BD90326CED82500BE2C7D /* level2.txt in Resources */,
 				71E406DD26CBF66E004A4E75 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
