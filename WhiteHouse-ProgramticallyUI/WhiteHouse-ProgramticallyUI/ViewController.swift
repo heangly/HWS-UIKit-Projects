@@ -22,25 +22,28 @@ class ViewController: UITableViewController {
 
     func fetchData() {
         let urlString: String
-        
+
         if navigationController?.tabBarItem.tag == 1 {
             urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
         } else {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
 
-        if let url = URL(string: urlString) {
-            let urlSession = URLSession.shared.dataTask(with: url) { (data, reponse, error) in
-                if let error = error {
-                    print("DEBUG: error fetching data \(error.localizedDescription)")
-                }
+        DispatchQueue.global(qos: .userInteractive).async {
+            if let url = URL(string: urlString) {
+                let urlSession = URLSession.shared.dataTask(with: url) { (data, reponse, error) in
+                    if let error = error {
+                        print("DEBUG: error fetching data \(error.localizedDescription)")
+                    }
 
-                if let data = data {
-                    self.parse(jsonData: data)
+                    if let data = data {
+                        self.parse(jsonData: data)
+                    }
                 }
+                urlSession.resume()
             }
-            urlSession.resume()
         }
+
 
     }
 
@@ -69,7 +72,7 @@ class ViewController: UITableViewController {
         cell.detailTextLabel?.text = petitons[indexPath.row].body
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController()
         vc.detailItem = petitons[indexPath.row]
