@@ -19,10 +19,11 @@ class PersonCell: UICollectionViewCell {
 
     private let nameLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Marker Felt", size: 16)
-        label.textColor = .black
         label.text = "label"
-        label.backgroundColor = .cyan
+        label.textAlignment = .center
+        label.numberOfLines = 2
         return label
     }()
 
@@ -32,16 +33,16 @@ class PersonCell: UICollectionViewCell {
     }
 
     func configureCell() {
-        backgroundColor = .systemPink
+        backgroundColor = .systemBackground
         addSubview(imageView)
-        imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        imageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
 
         addSubview(nameLabel)
-        nameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 134).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
