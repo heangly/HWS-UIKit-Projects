@@ -7,13 +7,30 @@
 
 import UIKit
 
+
+
 class PersonCell: UICollectionViewCell {
+    var name: String? {
+        didSet {
+            nameLabel.text = name!
+        }
+    }
+    
+    var imagePath: String? {
+        didSet {
+            imageView.image = UIImage(contentsOfFile: imagePath!)
+        }
+    }
+
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.backgroundColor = .white
+        iv.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
+        iv.layer.cornerRadius = 3
+        iv.layer.borderWidth = 2
         return iv
     }()
 
@@ -50,6 +67,7 @@ class PersonCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 }
 
 

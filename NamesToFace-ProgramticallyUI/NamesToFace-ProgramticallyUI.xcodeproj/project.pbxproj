@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71018D9E26D82C6400920733 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71018D9D26D82C6400920733 /* Person.swift */; };
 		71BF14D626D440A800386892 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BF14D526D440A800386892 /* AppDelegate.swift */; };
 		71BF14D826D440A800386892 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BF14D726D440A800386892 /* SceneDelegate.swift */; };
 		71BF14DA26D440A800386892 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BF14D926D440A800386892 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		71018D9D26D82C6400920733 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		71BF14D226D440A800386892 /* NamesToFace-ProgramticallyUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NamesToFace-ProgramticallyUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BF14D526D440A800386892 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71BF14D726D440A800386892 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				71BF14D526D440A800386892 /* AppDelegate.swift */,
 				71BF14D726D440A800386892 /* SceneDelegate.swift */,
+				71018D9D26D82C6400920733 /* Person.swift */,
 				71BF14D926D440A800386892 /* ViewController.swift */,
 				71BF14EB26D4421600386892 /* PersonCell.swift */,
 				71BF14DE26D440A800386892 /* Assets.xcassets */,
@@ -136,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71018D9E26D82C6400920733 /* Person.swift in Sources */,
 				71BF14DA26D440A800386892 /* ViewController.swift in Sources */,
 				71BF14D626D440A800386892 /* AppDelegate.swift in Sources */,
 				71BF14EC26D4421600386892 /* PersonCell.swift in Sources */,
