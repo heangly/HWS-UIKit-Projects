@@ -12,7 +12,7 @@ import UIKit
 class PersonCell: UICollectionViewCell {
     var name: String? {
         didSet {
-            nameLabel.text = name!
+            nameLabel.text = name
         }
     }
     

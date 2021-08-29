@@ -16,6 +16,17 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMainUI()
+        
+        let defaults = UserDefaults.standard
+        if let savedPeople = defaults.object(forKey: "people") as? Data {
+            let decoder = JSONDecoder()
+            
+            do {
+                people = try decoder.decode([Person].self, from: savedPeople)
+            } catch  {
+                print("Failed to load people \(error.localizedDescription)")
+            }
+        }
     }
 
     func configureMainUI() {
@@ -42,7 +53,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseableCellID, for: indexPath) as! PersonCell
         let person = people[indexPath.row]
         let path = getDocumentDirectory().appendingPathComponent(person.image)
-        
+
         cell.name = person.name
         cell.imagePath = path.path
         cell.layer.cornerRadius = 7
@@ -58,7 +69,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
                 guard let newName = ac?.textFields?[0].text else { return }
                 person.name = newName
                 self?.collectionView.reloadData()
-
+                self?.save()
             })
         present(ac, animated: true)
     }
@@ -74,14 +85,25 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
 
         let person = Person(name: "unknwon", image: imageName)
         people.append(person)
-                
+
         collectionView.reloadData()
+        save()
         dismiss(animated: true)
     }
 
     func getDocumentDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
+    }
+
+    func save() {
+        let encoder = JSONEncoder()
+        if let savedData = try? encoder.encode(people) {
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "people")
+        } else {
+            print("Failed to save people.")
+        }
     }
 }
 
