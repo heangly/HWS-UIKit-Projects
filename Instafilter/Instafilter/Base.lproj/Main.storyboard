@@ -83,7 +83,7 @@
                     <navigationItem key="navigationItem" id="a3c-NG-IKl"/>
                     <connections>
                         <outlet property="imageView" destination="oGX-jd-2OK" id="S5e-kd-Zsd"/>
-                        <outlet property="itensity" destination="MO1-iq-0xf" id="Pa7-K1-CWI"/>
+                        <outlet property="intensity" destination="MO1-iq-0xf" id="Pa7-K1-CWI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
