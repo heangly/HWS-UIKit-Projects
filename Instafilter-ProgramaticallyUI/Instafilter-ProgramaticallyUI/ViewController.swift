@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import CoreImage
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     //MARK: - Properties
+    private var context: CIContext!
+    private var currentFilter: CIFilter!
+    private var intensity: Float = 0.5
+    private var currentImage: UIImage!
+
     private let instaImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -53,6 +59,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        context = CIContext()
+        currentFilter = CIFilter(name: "CISepiaTone")
         configureMainUI()
     }
 
@@ -66,15 +74,38 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
     //MARK: - Actions
     @objc func changeFilter() {
-        print("changeFilter tapped")
+        let ac = UIAlertController(title: "Choose filter", message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "CIBumpDistortion", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CIGaussianBlur", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CIPixellate", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CISepiaTone", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CITwirlDistortion", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CIUnsharpMask", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "CIVignette", style: .default, handler: setFilter))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true)
     }
 
     @objc func save() {
-        print("save tapped")
+        guard let image = instaImageView.image else { return }
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveImageToAlbum(_: didFinishSavingWithError: contextInfo:)), nil)
+    }
+
+    @objc func saveImageToAlbum(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(ac, animated: true, completion: nil)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "You alerted image has been saved to your photos", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(ac, animated: true, completion: nil)
+        }
     }
 
     @objc func sliderDidChangeValue(slider: UISlider) {
-        print("Slider value change to \(slider.value)")
+        intensity = slider.value
+        applyProcessing()
     }
 
     @objc func importPicture() {
@@ -84,10 +115,46 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         present(picker, animated: true, completion: nil)
     }
 
+    func applyProcessing() {
+        let inputKeys = currentFilter.inputKeys
+
+        if inputKeys.contains(kCIInputIntensityKey) {
+            currentFilter.setValue(intensity, forKey: kCIInputIntensityKey)
+        }
+
+        if inputKeys.contains(kCIInputRadiusKey) {
+            currentFilter.setValue(intensity * 200, forKey: kCIInputRadiusKey)
+        }
+
+        if inputKeys.contains(kCIInputScaleKey) {
+            currentFilter.setValue(intensity * 10, forKey: kCIInputScaleKey)
+        }
+
+        if inputKeys.contains(kCIInputCenterKey) {
+            currentFilter.setValue(CIVector(x: currentImage.size.width / 2, y: currentImage.size.height / 2), forKey: kCIInputCenterKey)
+        }
+
+        if let cgimg = context.createCGImage(currentFilter.outputImage!, from: currentFilter.outputImage!.extent) {
+            let processedImage = UIImage(cgImage: cgimg)
+            instaImageView.image = processedImage
+        }
+    }
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
         dismiss(animated: true, completion: nil)
         instaImageView.image = image
+        currentImage = image
+    }
+
+    func setFilter(action: UIAlertAction) {
+        guard currentImage != nil else { return }
+        guard let actionTitle = action.title else { return }
+        
+        currentFilter = CIFilter(name: actionTitle)
+        let beginImage = CIImage(image: currentImage)
+        currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+        applyProcessing()
     }
 
     //MARK: - Constraints
@@ -97,13 +164,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         let sliderStack = UIStackView(arrangedSubviews: [intensityLabel, slider])
         sliderStack.axis = .horizontal
         sliderStack.spacing = 20
+        sliderStack.distribution = .fill
 
         [instaImageView, sliderStack, changeFilterButton, saveButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-
-
 
         let customConstraints = [
             instaImageView.heightAnchor.constraint(equalToConstant: 420),
@@ -115,6 +181,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             sliderStack.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: -12),
             sliderStack.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor, constant: 12),
 
+            intensityLabel.heightAnchor.constraint(equalToConstant: 50),
+
             changeFilterButton.topAnchor.constraint(equalTo: sliderStack.bottomAnchor, constant: 36),
             changeFilterButton.leftAnchor.constraint(equalTo: sliderStack.leftAnchor),
             changeFilterButton.bottomAnchor.constraint(lessThanOrEqualTo: view.layoutMarginsGuide.bottomAnchor),
@@ -122,7 +190,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             saveButton.topAnchor.constraint(equalTo: changeFilterButton.topAnchor),
             saveButton.rightAnchor.constraint(equalTo: sliderStack.rightAnchor),
             saveButton.bottomAnchor.constraint(equalTo: changeFilterButton.bottomAnchor),
-
         ]
 
         NSLayoutConstraint.activate(customConstraints)
